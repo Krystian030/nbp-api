@@ -8,6 +8,9 @@ This project is a simple runnable local server that exposes endpoints to query d
    
 3. Get the major difference between the buy and ask rate for a given currency code and number of last quotations.
 
+# Demo
+https://user-images.githubusercontent.com/101421631/234706913-ab93696d-9a95-4de6-bb7e-a2e10c766717.mp4
+
 # Technology Stack
 - Java 17
 - Spring 3.0.6
