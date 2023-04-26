@@ -1,0 +1,80 @@
+<div class="container">
+  <app-nbp-header></app-nbp-header>
+  <div class="form-group">
+    <div class="mb-3">
+      <label for="tableSelect">Select table:</label>
+      <select class="form-control" id="tableSelect" [(ngModel)]="selectedTable" (ngModelChange)="onChangeTable()">
+        <option value="A">Table A (for average exchange rates)</option>
+        <option value="C">Table C (for buy and sell rates)</option>
+      </select>
+    </div>
+    <hr class="mb-4">
+    <div class="mb-3">
+      <label for="operation">Operation</label>
+      <select class="form-control" id="operation" [(ngModel)]="selectedOperation">
+        <option value=0 *ngIf="selectedTable == 'A'">Average exchange rate</option>
+        <option value=1 *ngIf="selectedTable == 'A'">Min and max average rates</option>
+        <option value=2 *ngIf="selectedTable == 'C'">Major difference between buy and sell rates</option>
+      </select>
+    </div>
+
+    <hr class="mb-4">
+    <div class="mb-3">
+      <label for="currencyCode">Currency code:</label>
+      <select class="form-control"
+              id="currencyCode"
+              [(ngModel)]="selectedCurrencyCode">
+        <option
+                *ngFor="let code of codes; let i=index"
+        >
+          {{code}}
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="selectedOperation == 0">
+      <hr class="mb-4">
+      <div class="form-group">
+        <label for="datepicker">Select date:</label>
+        <input type="date" class="form-control" id="datepicker" [(ngModel)]="selectedDate" max="{{currentDate}}">
+      </div>
+    </div>
+
+    <div *ngIf="selectedOperation == 1 || selectedOperation == 2">
+      <hr class="mb-4">
+        <div class="form-outline">
+          <label class="form-label" for="typeNumber">Number of last quotations</label>
+          <input max="255" min="1" type="number" id="typeNumber" class="form-control" [(ngModel)]="numberOfLastQuotations" />
+        </div>
+    </div>
+
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onCalculate()">Calculate</button>
+
+    <div *ngIf="resultMinAndMax !== undefined && selectedOperation == 1">
+      <hr class="mb-4">
+      <h2>Result</h2>
+      <div class="mb-3">
+        Min: {{resultMinAndMax.minimumExchangeRate}}
+        Max: {{resultMinAndMax.maximumExchangeRate}}
+      </div>
+    </div>
+
+    <div *ngIf="result !== undefined && selectedOperation === 2">
+      <hr class="mb-4">
+      <h2>Result</h2>
+      <div class="mb-3">
+        Major difference: {{result}}
+      </div>
+    </div>
+
+    <div *ngIf="result !== undefined && selectedOperation === 0">
+      <hr class="mb-4">
+      <h2>Result</h2>
+      <div class="mb-3">
+        Average exchange rate: {{result}}
+      </div>
+    </div>
+  </div>
+</div>
+
