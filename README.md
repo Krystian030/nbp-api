@@ -39,11 +39,11 @@ The following endpoints are available:
     - Method: GET
 
 3. Get the maximum and minimum average exchange rate for a specific currency and number of last quotations:
-    - Endpoint: http://localhost:8080/api/exchange-rate/{currencyCode}/max-min-average-value?numberOfLastQuotations=<<number>>
+    - Endpoint: http://localhost:8080/api/exchange-rate/{currencyCode}/max-min-average-value?numberOfLastQuotations=number
     - Method: GET
 
 4. Get the major difference between the buy and ask rate for a specific currency and number of last quotations:
-    - Endpoint: http://localhost:8080/api/exchange-rate/{currencyCode}/major-rate-difference?numberOfLastQuotations=<<number>>
+    - Endpoint: http://localhost:8080/api/exchange-rate/{currencyCode}/major-rate-difference?numberOfLastQuotations=number
     - Method: GET
 
 # Swagger API Documentation
